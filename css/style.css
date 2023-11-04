@@ -43,7 +43,7 @@ body::-webkit-scrollbar {
   z-index: -1;
   opacity: 0;
   background-color: #0000005c;
-  /* transition: all 0.5s; */
+  transition: all 0.5s;
 }
 
 .show_modal {

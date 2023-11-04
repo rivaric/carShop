@@ -495,3 +495,14 @@ form.addEventListener("submit", (e) => {
     message.value = "";
   });
 });
+
+// Плавный скрол
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+      });
+  });
+});
