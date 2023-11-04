@@ -1,0 +1,32 @@
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap");
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 15px 15px;
+  max-width: clamp(320px, 44vw, 1000px);
+  color: #03142e;
+  font-weight: 400;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: clamp(16px, 1.25vw, 26px);
+}
+
+.main__btn {
+  width: clamp(260px, 15.6vw, 320px);
+  height: clamp(60px, 3.65vw, 80px);
+  background-color: #234970;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  color: white;
+  font-weight: 700;
+  margin: 50px 0;
+}
+
+.main__text > span > ul li {
+  list-style: inside;
+  margin-left: 20px;
+}/*# sourceMappingURL=confid.css.map */

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden Sands</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script type="module" src="js/main.js"></script>
+  </head>
+
+  <body>
+    <!-- Модальное окно -->
+    <dialog id="modal" open class="modal-background">
+      <div class="modal">
+        
+      </div>
+    </dialog>
+
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__container">
+          <nav class="header__nav">
+            <div class="header__logo">
+              <img src="img/logo.svg" alt="header__logo" />
+            </div>
+            <div class="header__burger">
+              <span></span>
+            </div>
+            <div class="header__menu">
+              <ul>
+                <li><a href="#mains">Главная</a></li>
+                <li><a href="#cars">Автомобили</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+              </ul>
+              <div class="header__btn"><button><a href="#contacts">Связаться</a></button></div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page" id="mains">
+        <section class="page__main main-section">
+          <div class="main-section__container">
+            <div class="main-section__content">
+              <div class="main-section__text">
+                <h1 class="main-section__title">Golden Sands</h1>
+                <div class="main-section__subtitle">
+                  Аренда автомобилей в Дубае
+                </div>
+                <div class="main-section__subsubtitle">Роскошь и комфорт</div>
+              </div>
+              <div class="main-section__btn">
+                <button><a href="#contacts">Забронировать</a></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page__car car-section">
+          <div class="car-section__container">
+            <div class="car-section__content">
+              <h1 class="car-section__title" id="cars">
+                Ваш идеальный автомобиль на время пребывания в Дубае
+              </h1>
+              <div class="car-section__settings">
+                <div class="car-section__search">
+                  <form action="#">
+                    <button type="submit">
+                      <img src="img/search.svg" alt="search" />
+                    </button>
+                    <input
+                      type="text"
+                      placeholder="Найти автомобиль"
+                      id="search__car" />
+                  </form>
+                </div>
+                <div class="car-section__class">
+                  <form action="#">
+                    <select class="class">
+
+                    </select>
+                  </form>
+                </div>
+
+                <div class="car-section__passengers">
+                  <form action="#">
+                    <select class="passengers">
+
+                    </select>
+                  </form>
+                </div>
+                <div class="car-section__sortprice">
+                  <form action="#">
+                    <select class="sortprice">
+                      <option value="all">Цена</option>
+                      <option value="up">Убыв.</option>
+                      <option value="down">Возр.</option>
+                    </select>
+                  </form>
+                </div>
+              </div>
+              <div class="car-section__box">
+                <!-- Cars -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page_contacts contacts-section">
+          <div class="contacts-section__container">
+            <div class="contacts-section__content">
+              <div class="contacts-section__title">
+                <h1 id="contacts">Свяжитесь с нами</h1>
+              </div>
+              <div class="contacts-section__box">
+                <div class="contacts-section__left">
+                  <div class="contacts-section__info">
+                    <a href="tel:#">+7 (900) 111-22-33</a>
+                    <a href="mailto:#">pochta@gmail.com</a>
+                  </div>
+                  <div class="contacts-section__messengers">
+                    <h2>Мы в мессенджерах:</h2>
+                    <div class="contacts-section__messenger">
+                      <a href="https://t.me/zeportus" target="_blank"
+                        ><img src="img/telegram.svg" alt="telegram"
+                      /></a>
+                      <a href="https://wa.me/79265723052" target="_blank"
+                        ><img src="img/whatsapp.svg" alt="whatsapp"
+                      /></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="contacts-section__right">
+                  <form action="#" class="contacts_form">
+                    <input type="text" placeholder="Ваше имя" name="name"/>
+                    <input type="text" placeholder="Номер телефона" name="phone"/>
+                    <input type="text" placeholder="Сообщение" name="message"/>
+                    <div class="contacts-section__btn">
+                      <button type="submit" class="btn_submit">Отправить</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__content">
+            <div class="footer__logo">
+              <img src="img/bigLogo.svg" alt="logo" />
+            </div>
+            <div class="footer__user">
+              <a href="./privacy_policy/confid.html" target="_blank">Политика конфиденциальности</a>
+              <a href="./privacy_policy/confid.html" target="_blank">Пользовательское соглашение</a>
+            </div>
+            <div class="footer__messengers">
+              <h2>Мы в мессенджерах:</h2>
+              <div class="contacts-section__messenger">
+                <a href="https://t.me/zeportus" target="_blank"><img src="img/telegram.svg" alt="telegram" /></a>
+                <a href="https://wa.me/79265723052" target="_blank"><img src="img/whatsapp.svg" alt="whatsapp" /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
