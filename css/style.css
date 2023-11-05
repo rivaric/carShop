@@ -138,9 +138,10 @@ body::-webkit-scrollbar {
   flex-direction: column;
   font-size: clamp(12px, 1.5vw, 32px);
   min-height: 100px;
-  min-width: 100px;
+  width: 100px;
   gap: 5px;
   align-items: center;
+  text-align: center;
 }
 
 .characteristic > svg {
@@ -161,14 +162,14 @@ body::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  column-gap: 65px;
+  column-gap: 40px;
 }
 
-@media (max-width: 872px) {
+/* @media (max-width: 872px) {
   .car__specifications-other {
     column-gap: 20px;
   }
-}
+} */
 
 .car__specifications {
   height: 100%;
@@ -322,12 +323,8 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   .characteristic {
     min-height: 30px;
-    min-width: 30px;
+    width: 40px;
     gap: 5px;
-  }
-
-  .car__specifications-other {
-    column-gap: 30px;
   }
 
   .characteristic > svg {
@@ -351,7 +348,7 @@ body::-webkit-scrollbar {
 
   .modal {
     flex-direction: column;
-    height: 80%;
+    height: 90%;
     width: 80%;
   }
 
@@ -1042,6 +1039,17 @@ body::-webkit-scrollbar {
   border-bottom: 1px solid rgb(147, 100, 42);
   padding-left: 5px;
   width: clamp(280px, 27vw, 520px);
+  margin-bottom: clamp(20px, 3.1vw, 60px);
+}
+
+#phone {
+  border-bottom: 1px solid rgb(147, 100, 42);
+  padding-left: 50px;
+  width: clamp(280px, 27vw, 520px);
+  margin-bottom: clamp(20px, 3.1vw, 60px);
+}
+
+.iti {
   margin-bottom: clamp(20px, 3.1vw, 60px);
 }
 

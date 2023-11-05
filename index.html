@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golden Sands</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
   </head>
 
   <body>
@@ -132,7 +133,7 @@
                 <div class="contacts-section__right">
                   <form action="#" class="contacts_form">
                     <input type="text" placeholder="Ваше имя" name="name"/>
-                    <input type="text" placeholder="Номер телефона" name="phone"/>
+                    <input type="text" name="phone" id="phone"/>
                     <input type="text" placeholder="Сообщение" name="message"/>
                     <div class="contacts-section__btn">
                       <button type="submit" class="btn_submit">Отправить</button>
@@ -168,5 +169,6 @@
     </div>
 
     <script defer src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
   </body>
 </html>

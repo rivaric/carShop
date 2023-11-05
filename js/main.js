@@ -293,7 +293,6 @@ getFilterOptions().then((data) => {
 
 const wrapperCars = document.querySelector(".car-section__box");
 getData().then((data) => {
-  console.log(data);
   var curData = data;
   const html = createCards(curData);
 
@@ -462,6 +461,14 @@ const Modal = () => {
     });
   });
 };
+
+// Валидаци формы
+const phone = document.querySelector("#phone");
+window.intlTelInput(phone, {
+  utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+  separateDialCode: true,
+});
+
 
 // Отправка формы
 const form = document.querySelector(".contacts_form");
