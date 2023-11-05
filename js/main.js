@@ -198,12 +198,12 @@ const templateModal = (data) => {
       </div>`;
 };
 
-const templateCard = (data) => {
+const templateCard = (data, id) => {
   return `<div class="car-section__card" data-type="${
     data.type[0].toUpperCase() + data.type.substr(1).toLowerCase()
   }" data-persons=${data.persons} data-name="${data.title}" data-price="${
     data.price_per_day_usd
-  }">
+  }" data-id="${id}">
         <div class="car-section__image">
           <img src=${data.preview_img} alt="cardcar" />
         </div>
@@ -243,7 +243,7 @@ const getData = async () => {
 };
 
 const getCarById = async (id) => {
-  const res = await fetch(`http://37.46.129.49:8008/car/${id + 1}`);
+  const res = await fetch(`http://37.46.129.49:8008/car/${id}`);
   const obj = res.json();
   return obj;
 };
@@ -265,7 +265,7 @@ const createCards = (data) => {
     for (let key in data) {
       const element = data[key];
 
-      html += templateCard(element);
+      html += templateCard(element, key);
     }
   }
 
@@ -293,6 +293,7 @@ getFilterOptions().then((data) => {
 
 const wrapperCars = document.querySelector(".car-section__box");
 getData().then((data) => {
+  console.log(data);
   var curData = data;
   const html = createCards(curData);
 
@@ -354,7 +355,7 @@ getData().then((data) => {
     const priceB = b.dataset.price;
 
     // Сравните цены
-    return priceA - priceB;
+    return priceB - priceA;
   }
 
   const carCards = document.querySelectorAll(".car-section__card");
@@ -416,6 +417,8 @@ const Modal = () => {
 
   carCards.forEach((card, id) => {
     card.addEventListener("click", () => {
+      const id = card.dataset.id;
+      console.log(id);
       getCarById(id).then((data) => {
         const modalHTML = templateModal(data);
 
