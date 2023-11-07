@@ -199,11 +199,14 @@ const templateModal = (data) => {
 };
 
 const templateCard = (data, id) => {
-  return `<div class="car-section__card" data-type="${
-    data.type[0].toUpperCase() + data.type.substr(1).toLowerCase()
-  }" data-persons=${data.persons} data-name="${data.title}" data-price="${
-    data.price_per_day_usd
-  }" data-id="${id}">
+  return `<div class="car-section__card" 
+    data-type="${data.type[0].toUpperCase() + data.type.substr(1).toLowerCase()}" 
+    data-persons=${data.persons} 
+    data-name="${data.title}" 
+    data-price="${data.price_per_day_usd}" 
+    data-id="${id}" 
+    data-month="${data.monthly_rent}"
+  >
         <div class="car-section__image">
           <img src=${data.preview_img} alt="cardcar" />
         </div>
@@ -226,8 +229,10 @@ const templateCard = (data, id) => {
               <button>
                 <span class="carprice__arend">Арендовать</span>
                 <span class="carprice__price">$${
-                  data.price_per_day_usd
-                } / день</span>
+                  data.monthly_rent
+                    ? data.price_per_month_usd
+                    : data.price_per_day_usd
+                } / ${data.monthly_rent ? "месяц" : "день"}</span>
               </button>
             </div>
           </div>
@@ -237,22 +242,28 @@ const templateCard = (data, id) => {
 
 // Get data
 const getData = async () => {
-  const res = await fetch("http://37.46.129.49:8008/cars");
+  const res = await fetch("https://goldensandsdubai.ru:8080/cars");
   const obj = res.json();
   return obj;
 };
 
 const getCarById = async (id) => {
-  const res = await fetch(`http://37.46.129.49:8008/car/${id}`);
+  const res = await fetch(`https://goldensandsdubai.ru:8080/car/${id}`);
   const obj = res.json();
   return obj;
 };
 
 const getFilterOptions = async () => {
-  const res = await fetch(`http://37.46.129.49:8008/filter_options`);
+  const res = await fetch(`https://goldensandsdubai.ru:8080/filter_options`);
   const obj = res.json();
   return obj;
 };
+
+const getContacts = async () => {
+  const res = await fetch(`https://goldensandsdubai.ru:8080/options`);
+  const obj = res.json();
+  return obj;
+}
 
 const createCards = (data) => {
   let html = "";
@@ -305,11 +316,15 @@ getData().then((data) => {
   const selectClass = document.querySelector(".class");
   const selectPassengers = document.querySelector(".passengers");
   const selectSortPrice = document.querySelector(".sortprice");
+  const selectPriodRental = document.querySelector(".rental-period");
 
   const filterCards = () => {
     const serchInput = document.querySelector("#search__car").value;
     const selectClass = document.querySelector(".class").value;
     const selectPassengers = document.querySelector(".passengers").value;
+    const selectPriodRental = document.querySelector(".rental-period").value;
+
+    console.log(selectPriodRental);
 
     const carCards = document.querySelectorAll(".car-section__card");
 
@@ -317,12 +332,15 @@ getData().then((data) => {
       const name = car.dataset.name;
       const type = car.dataset.type;
       const persons = car.dataset.persons;
+      const period = car.dataset.month === "true" ? "month" : "day";
+
+      console.log(name, period);
 
       let shouldShow = true;
 
       if (
         selectClass &&
-        type.toLowerCase() !== selectClass.toLowerCase() &&
+        !type.toLowerCase().includes(selectClass.toLowerCase()) &&
         selectClass !== "all"
       ) {
         shouldShow = false;
@@ -340,8 +358,16 @@ getData().then((data) => {
         shouldShow = false;
       }
 
+      if (
+        selectPriodRental &&
+        period !== selectPriodRental &&
+        selectPriodRental !== "all"
+      ) {
+        shouldShow = false;
+      }
+
       if (shouldShow) {
-        car.style.display = "flex"; // или установите стиль, который вам нужен для отображения
+        car.style.display = "flex";
       } else {
         car.style.display = "none";
       }
@@ -389,6 +415,8 @@ getData().then((data) => {
   selectClass.addEventListener("change", filterCards);
 
   selectPassengers.addEventListener("change", filterCards);
+
+  selectPriodRental.addEventListener("change", filterCards);
 
   selectSortPrice.addEventListener("change", sort);
 });
@@ -465,10 +493,11 @@ const Modal = () => {
 // Валидаци формы
 const phone = document.querySelector("#phone");
 window.intlTelInput(phone, {
-  utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+  utilsScript:
+    "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
   separateDialCode: true,
+  preferredCountries: ["ru"],
 });
-
 
 // Отправка формы
 const form = document.querySelector(".contacts_form");
@@ -485,7 +514,7 @@ form.addEventListener("submit", (e) => {
     message: message.value,
   };
 
-  fetch("http://37.46.129.49:8008/send_message", {
+  fetch("http://goldensandsdubai.ru:8080/send_message", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -507,12 +536,43 @@ form.addEventListener("submit", (e) => {
 });
 
 // Плавный скрол
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-      e.preventDefault();
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
 
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-      });
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
   });
 });
+
+
+// Параметры для связи
+const templateContacts = (data) => {
+  return `
+    <a href="tel:${data.phone}">${data.phone}</a>
+    <a href="mailto:${data.email}">${data.email}</a>
+  `
+}
+
+const templateWeInMessangers = (data) => {
+  return `
+      <a href="https://t.me/${data.telegram}" target="_blank">
+        <img src="img/telegram.svg" alt="telegram"/>
+      </a>
+      <a href="https://wa.me/${data.whatsapp}" target="_blank">
+        <img src="img/whatsapp.svg" alt="whatsapp"/>
+      </a>
+  `
+}
+
+getContacts().then((data) => {
+  console.log(data);
+  const contactsWrapper = document.querySelector(".contacts-section__info");
+  const tgAndWaWrapper = document.querySelectorAll(".contacts-section__messenger");
+
+  contactsWrapper.innerHTML = templateContacts(data);
+  tgAndWaWrapper.forEach((item) => {
+    item.innerHTML = templateWeInMessangers(data);
+  })
+})

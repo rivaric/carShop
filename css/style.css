@@ -161,15 +161,16 @@ body::-webkit-scrollbar {
   height: 60%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 40px;
+  justify-content: space-around;
+  align-items: center;
+  column-gap: 5px;
 }
 
-/* @media (max-width: 872px) {
-  .car__specifications-other {
-    column-gap: 20px;
+@media (min-width: 768px) and (max-width: 1001px) {
+  .characteristic {
+    width: 60px;
   }
-} */
+}
 
 .car__specifications {
   height: 100%;
@@ -656,6 +657,24 @@ body::-webkit-scrollbar {
 }
 
 .car-section__sortprice > form > select {
+  background-color: rgb(19, 19, 19);
+  width: clamp(220px, 9.6vw, 540px);
+}
+
+.car-section__rental-period > form {
+  width: clamp(230px, 10.6vw, 550px);
+  height: clamp(25px, 3.1vw, 60px);
+  border-radius: 5px;
+  border: 1.5px double transparent;
+  background-image: linear-gradient(45deg, rgb(19, 19, 19), rgb(19, 19, 19)), linear-gradient(to right, rgb(143, 94, 37), rgb(251, 244, 161), rgb(143, 94, 37));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-section__rental-period > form > select {
   background-color: rgb(19, 19, 19);
   width: clamp(220px, 9.6vw, 540px);
 }
